@@ -1,0 +1,22 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+.adivina-container {
+    text-align: center;
+    font-family: 'Jersey 10';
+  }
+  
+  .pixelated {
+    image-rendering: pixelated;
+    width: 200px;
+    height: 200px;
+    filter: blur(4000000px); /* Ajusta el nivel de difuminado */
+  }
+  
+  input, button {
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 1.2rem;
+    margin: 10px;
+  }
+
+  

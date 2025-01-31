@@ -1,1 +1,114 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0;}
+
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+
+/* Estilos globales */
+body {
+  font-family: 'Jersey 10', sans-serif;
+  background: white;
+  margin: 0;
+  padding: 0;
+  color: #2c3e50; /* Color de texto principal */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor principal */
+.adivina-container {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra */
+  max-width: 500px;
+  width: 100%;
+  margin: 1rem;
+}
+
+/* Título */
+h1 {
+  font-size: 2.5rem;
+  color: #e74c3c; /* Rojo Pokémon */
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+}
+
+/* Imagen del Pokémon */
+.pixelated {
+  image-rendering: pixelated;
+  width: 200px;
+  height: 200px;
+  filter: blur(5px); /* Efecto de desenfoque */
+  transition: filter 0.3s ease; /* Transición suave */
+}
+
+.pixelated:hover {
+  filter: blur(0); /* Quita el desenfoque al pasar el mouse */
+}
+
+/* Input y botón */
+input {
+  font-family: 'Jersey 10', sans-serif;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  border: 2px solid #3498db; /* Borde azul */
+  border-radius: 8px;
+  width: 80%;
+  margin: 10px 0;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #e74c3c; /* Cambia el color del borde al enfocar */
+}
+
+button {
+  font-family: 'Jersey 10', sans-serif;
+  font-size: 1.2rem;
+  padding: 0.5rem 1rem;
+  background-color: #3498db; /* Fondo azul */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #e74c3c; /* Cambia el color al pasar el mouse */
+  transform: scale(1.05); /* Efecto de escala */
+}
+
+button:active {
+  transform: scale(0.95); /* Efecto de clic */
+}
+
+/* Intentos restantes */
+p {
+  font-size: 1.2rem;
+  color: #2c3e50;
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .pixelated {
+    width: 150px;
+    height: 150px;
+  }
+
+  input, button {
+    width: 90%;
+  }
+}

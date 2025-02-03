@@ -63,4 +63,6 @@ export class AdivinaComponent implements OnInit {
     }
     this.guess = '';
   }
+
+
 }

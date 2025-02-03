@@ -1,49 +1,74 @@
-/* Fondo del modal */
-.mat-dialog-container {
-    background: linear-gradient(135deg, #ffcc00, #ff6f61); /* Fondo degradado */
-    border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    border: 4px solid #2c3e50; /* Borde grueso */
+/* Asegurarse de que html y body ocupen todo el viewport y sin scroll */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Contenedor de fondo que ocupa toda la pantalla */
+.fullscreen {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para el contenedor del diálogo */
+.dialog-container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Estilo para el título del diálogo */
+.dialog-container h2 {
+  margin: 0 0 20px;
+  font-size: 2rem;
+  color: #333333;
+}
+
+/* Estilo para el párrafo del mensaje */
+.dialog-container p {
+  margin: 0 0 30px;
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+/* Estilos para el botón */
+.dialog-container button {
+  background-color: #6e8efb;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Efecto hover para el botón */
+.dialog-container button:hover {
+  background-color: #5a79d4;
+}
+
+/* Animación de aparición */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-  
-  /* Título del modal */
-  h2 {
-    font-family: 'Jersey 10', sans-serif;
-    font-size: 2rem;
-    color: #2c3e50; /* Color oscuro */
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* Sombra blanca */
-    margin-bottom: 1rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  /* Mensaje del modal */
-  p {
-    font-family: 'Jersey 10', sans-serif;
-    font-size: 1.5rem;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Botón de cerrar */
-  button {
-    font-family: 'Jersey 10', sans-serif;
-    font-size: 1.2rem;
-    padding: 0.5rem 1.5rem;
-    background-color: #3498db; /* Fondo azul */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
-  }
-  
-  button:hover {
-    background-color: #e74c3c; /* Cambia a rojo al pasar el mouse */
-    transform: scale(1.05); /* Efecto de escala */
-  }
-  
-  button:active {
-    transform: scale(0.95); /* Efecto de clic */
-  }
+}

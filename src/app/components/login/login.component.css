@@ -1,0 +1,74 @@
+.login-container {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más fuerte y con mayor difuminado */
+    text-align: center;
+    animation: fadeIn 0.5s ease-out; /* Animación de entrada */
+  }
+
+  /* Animación para el fadeIn */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .input-group {
+    margin-bottom: 25px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .input-group input {
+    width: 92%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease; /* Transición suave para borde */
+  }
+  
+  .input-group input:focus {
+    border-color: #007bff; /* Cambio de borde al enfocarse */
+  }
+  
+  .btn-login {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
+  }
+  
+  .btn-login:hover {
+    background-color: #0056b3; /* Color más oscuro al hacer hover */
+    transform: translateY(-3px); /* Efecto de levitación */
+  }

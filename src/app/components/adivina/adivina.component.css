@@ -10,7 +10,7 @@
     image-rendering: pixelated;
     width: 200px;
     height: 200px;
-    filter: blur(4000000px); /* Ajusta el nivel de difuminado */
+    filter: blur(400000px); /* Ajusta el nivel de difuminado */
   }
   
   input, button {

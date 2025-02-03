@@ -1,16 +1,17 @@
 <div class="login-container">
     <h2>Iniciar sesión</h2>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="input-group">
         <label for="username">Usuario</label>
-        <input type="text" id="username" name="username" placeholder="Escribe tu usuario" required />
+        <input type="text" id="username" formControlName="username" placeholder="Escribe tu usuario" required />
       </div>
       
       <div class="input-group">
         <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" placeholder="Escribe tu contraseña" required />
+        <input type="password" id="password" formControlName="password" placeholder="Escribe tu contraseña" required />
       </div>
       
-      <button type="button" class="btn-login" (click)="login()">Iniciar sesión</button>
+      <button class="btn-login" type="submit" [disabled]="loginForm.invalid">Iniciar sesión</button>
     </form>
-</div>
+  </div>
+  

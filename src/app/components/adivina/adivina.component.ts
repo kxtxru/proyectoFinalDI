@@ -4,6 +4,7 @@ import { PokemonService } from '../../services/pokemon.service';
 import { CommonModule } from '@angular/common'; 
 import { MatDialog } from '@angular/material/dialog';
 import { ResultDialogComponent } from '../result-dialog/result-dialog.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-adivina',
@@ -17,11 +18,16 @@ export class AdivinaComponent implements OnInit {
   imageUrl: string = '';
   attempts = 3;
   guess = '';
+  nombre: string = '';
 
-  constructor(private pokemonService: PokemonService,private dialog: MatDialog) {}
+  constructor(private pokemonService: PokemonService,private dialog: MatDialog,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.loadRandomPokemon();
+    this.route.paramMap.subscribe(params => {
+      this.nombre = params.get('nombre') || 'Invitado';  // Obtén el parámetro 'nombre' de la ruta
+      console.log('Nombre:', this.nombre);  // Puedes usar el nombre en tu lógica
+    });
   }
 
   loadRandomPokemon(): void {
@@ -36,7 +42,7 @@ export class AdivinaComponent implements OnInit {
       this.dialog.open(ResultDialogComponent, {
         data: {
           title: '¡Correcto!',
-          message: `Es ${this.pokemon.name}`,
+          message: `Es ${this.pokemon.name}, ${this.nombre}`,
         },
       });
       this.loadRandomPokemon();

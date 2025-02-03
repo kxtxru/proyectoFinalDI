@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
 import { PokemonService } from '../../services/pokemon.service';
 import { CommonModule } from '@angular/common'; 
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResultDialogComponent } from '../result-dialog/result-dialog.component';
 import { ActivatedRoute } from '@angular/router';
 
@@ -19,14 +19,15 @@ export class AdivinaComponent implements OnInit {
   attempts = 3;
   guess = '';
   nombre: string = '';
+  racha: number = 1;
+  currentDialogRef: MatDialogRef<any> | null = null;
 
   constructor(private pokemonService: PokemonService,private dialog: MatDialog,private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.loadRandomPokemon();
     this.route.paramMap.subscribe(params => {
-      this.nombre = params.get('nombre') || 'Invitado';  // Obtén el parámetro 'nombre' de la ruta
-      console.log('Nombre:', this.nombre);  // Puedes usar el nombre en tu lógica
+      this.nombre = params.get('nombre') || 'Invitado';
     });
   }
 
@@ -38,13 +39,20 @@ export class AdivinaComponent implements OnInit {
   }
 
   checkGuess(): void {
+    if (this.currentDialogRef) {
+      this.currentDialogRef.close();
+    }
+    if (this.guess.trim() === '') {
+      return;  // Si el campo está vacío, no hacer nada
+    }
     if (this.guess.toLowerCase() === this.pokemon.name.toLowerCase()) {
       this.dialog.open(ResultDialogComponent, {
         data: {
           title: '¡Correcto!',
-          message: `Es ${this.pokemon.name}, ${this.nombre}`,
+          message: `Es ${this.pokemon.name}, ${this.nombre}, llevas racha de: ${this.racha}`,
         },
       });
+      this.racha ++;
       this.loadRandomPokemon();
     } else {
       this.attempts--;

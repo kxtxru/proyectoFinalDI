@@ -1,7 +1,7 @@
 <div class="adivina-container">
-    <h1>¿Quién es ese Pokémon?</h1>
-    <img [src]="imageUrl" alt="Pokémon" class="pixelated" />
-    <input [(ngModel)]="guess" placeholder="Escribe el nombre" />
-    <button (click)="checkGuess()">Adivinar</button>
-    <p>Intentos restantes: {{ attempts }}</p>
-  </div>
+  <h1>¿Quién es ese Pokémon?</h1>
+  <img [src]="imageUrl" alt="Pokémon" class="pixelated" />
+  <input [(ngModel)]="guess" placeholder="Escribe el nombre" (keyup.enter)="checkGuess()" />
+  <button (click)="checkGuess()">Adivinar</button>
+  <p>Intentos restantes: {{ attempts }}</p>
+</div>

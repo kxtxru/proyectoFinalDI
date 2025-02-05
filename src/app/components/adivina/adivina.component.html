@@ -1,9 +1,14 @@
 <div class="adivina-container">
+  <p class="coins">{{monedas}} 💰</p>
   <h1>¿Who's that pokemon?</h1>
-  <h1 *ngIf="isPistaVisible">{{letras}}</h1>
-  <img [src]="imageUrl" alt="Pokémon" class="pixelated" />
+  <h1 *ngIf="isPistaVisible">{{ letras.join(' ') }}</h1>
+  <img [src]="imageUrl" alt="Pokémon" class="pixelated" [style.filter]="'blur(' + blurAmount + 'px)'"/>
   <input [(ngModel)]="guess" placeholder="Escribe el nombre" (keyup.enter)="checkGuess()" />
-  <button (click)="checkGuess()">Adivinar</button>
-  <button (click)="togglePista()">Mostrar/Ocultar Pista</button>
+  <button type="button" class="guessButtons" (click)="checkGuess()">Adivinar 🤔</button>
+  <button type="button" class="guessButtons" (click)="togglePista()">Huecos 🔎 (Free)</button>
+  <button type="button" class="guessButtons" (click)="addPista()">Pista 💡 (5 💰)</button>
+  <button type="button" class="guessButtons" (click)="reduceBlur()" [disabled]="blurAmount === 0 || monedas < 10">
+    Reducir Blur 🧿 (10 💰)
+  </button>
   <p>Intentos restantes: {{ attempts }}</p>
 </div>

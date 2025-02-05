@@ -1,14 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
 html, body { height: 100%; }
 body { margin: 0;}
 
-@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
 
 
 /* Estilos globales */
 body {
-  font-family: 'Jersey 10';
   background: white;
   margin: 0;
   padding: 0;
@@ -39,23 +38,21 @@ h1 {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
 }
 
-/* Imagen del Pokémon */
-.pixelated {
-  image-rendering: pixelated;
-  width: 200px;
-  height: 200px;
-  filter: blur(5px); /* Efecto de desenfoque */
-  transition: filter 0.3s ease; /* Transición suave */
-}
-
-.pixelated:hover {
-  filter: blur(0); /* Quita el desenfoque al pasar el mouse */
-}
+  /* Imagen del Pokémon */
+  .pixelated {
+    image-rendering: pixelated;
+    width: 200px;
+    height: 200px;
+    transition: filter 0.3s ease; /* Transición suave */
+  }
+  
+  .pixelated:hover {
+    filter: blur(0); /* Quita el desenfoque al pasar el mouse */
+  }
 
 /* Input y botón */
 input {
-  font-family: 'Jersey 10';
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding: 0.5rem;
   border: 2px solid #3498db; /* Borde azul */
   border-radius: 8px;
@@ -70,8 +67,7 @@ input:focus {
 }
 
 button {
-  font-family: 'Jersey 10';
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   padding: 0.5rem 1rem;
   background-color: #3ca2a2; /* Fondo azul */
   color: white;
@@ -91,9 +87,8 @@ button:active {
   transform: scale(0.95); /* Efecto de clic */
 }
 
-/* Intentos restantes */
 p {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #2c3e50;
   margin-top: 1rem;
 }
@@ -104,12 +99,9 @@ p {
     font-size: 2rem;
   }
 
-  .pixelated {
-    width: 150px;
-    height: 150px;
-  }
 
   input, button {
     width: 90%;
   }
+
 }

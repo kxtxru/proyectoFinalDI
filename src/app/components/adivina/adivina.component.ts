@@ -11,9 +11,11 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true, 
   imports: [FormsModule, CommonModule],
   templateUrl: './adivina.component.html',
-  styleUrls: ['./adivina.component.scss'],
+  styleUrls: ['./adivina.component.css'],
 })
 export class AdivinaComponent implements OnInit {
+
+
   pokemon: any;
   imageUrl: string = '';
   attempts = 3;
@@ -21,14 +23,23 @@ export class AdivinaComponent implements OnInit {
   nombre: string = '';
   racha: number = 1;
   currentDialogRef: MatDialogRef<any> | null = null;
-  letras: string = "";
+  letras!: any[];
   pokeName: string = "";
   isPistaVisible: boolean = false;
+  numPistas = 0;
+  monedas: number = 0;
+  blurAmount: number = 4;
 
   constructor(private pokemonService: PokemonService,private dialog: MatDialog,private route: ActivatedRoute) {}
 
   togglePista() {
     this.isPistaVisible = !this.isPistaVisible; // Cambia el estado
+  }
+  reduceBlur() {
+    if (this.monedas >= 10 && this.blurAmount > 0) {
+      this.monedas -= 10;
+      this.blurAmount = Math.max(0, this.blurAmount - 2); // Reduce el blur en 1px, mínimo 0
+    }
   }
 
   ngOnInit(): void {
@@ -38,19 +49,41 @@ export class AdivinaComponent implements OnInit {
       this.nombre = params.get('nombre') || 'Invitado';
     });
   }
-  loadLetras() {
-    for (let i = 0; i < this.pokeName.length; i++) {  
-      this.letras += this.pokeName.toString()[i] === "-" ? "- " : "_ ";  
-  } 
+
+  addPista() {
+
+    if(this.isPistaVisible){
+      this.isPistaVisible = true;
+    }
+    if (this.numPistas < this.pokeName.length && this.monedas >= 5) {
+      this.numPistas++;
+      this.monedas -= 5;
+      this.revealRandomLetter(); // Solo revela una nueva letra sin reiniciar
+    }
   }
 
   loadRandomPokemon(): void {
     this.pokemonService.getRandomPokemon().subscribe((data: any) => {
       this.pokemon = data;
       this.imageUrl = data.sprites.front_default;
-      this.pokeName = "asdasd";
-      this.loadLetras();
+      this.pokeName = this.pokemon.name;
+      this.numPistas = 0; // Reinicia el contador de pistas
+      this.letras = Array(this.pokeName.length).fill('_'); // Inicializa solo al cargar nuevo Pokémon
     });
+  }
+
+  revealRandomLetter() {
+    const hiddenIndices = this.getHiddenIndices();
+    if (hiddenIndices.length === 0) return;
+
+    const randomPos = hiddenIndices[Math.floor(Math.random() * hiddenIndices.length)];
+    this.letras[randomPos] = this.pokeName[randomPos];
+  }
+
+  private getHiddenIndices(): number[] {
+    return this.letras
+      .map((char, index) => char === '_' ? index : -1)
+      .filter(index => index !== -1);
   }
 
   checkGuess(): void {
@@ -67,8 +100,10 @@ export class AdivinaComponent implements OnInit {
           message: `Es ${this.pokemon.name}, ${this.nombre}, llevas racha de: ${this.racha}`,
         },
       });
+      this.monedas += 10;
       this.attempts = 3;
       this.racha ++;
+
       this.loadRandomPokemon();
     } else {
       this.attempts--;
@@ -85,14 +120,15 @@ export class AdivinaComponent implements OnInit {
       } else {
         this.dialog.open(ResultDialogComponent, {
           data: {
-            title: '¡Inténtalo de nuevo!',
+            title: 'Inténtalo de nuevo!',
             message: `Te quedan ${this.attempts} intentos.`,
           },
         });
+        this.monedas += 5;
+        this.togglePista();
+        this.addPista();
       }
     }
     this.guess = '';
   }
-
-
 }

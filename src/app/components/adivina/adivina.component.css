@@ -5,13 +5,37 @@
     text-align: center;
     font-family: 'Jersey 10';
   }
-  
-  .pixelated {
-    image-rendering: pixelated;
-    width: 200px;
-    height: 200px;
-    filter: blur(400000px); /* Ajusta el nivel de difuminado */
+  h1{
+    font-family: 'Jersey 10';
   }
+  .guessButtons {
+    font-size: 1.6rem;
+    padding: 0.5rem 1rem;
+    background-color: #3ca2a2; /* Fondo azul */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 10px 0; /* Espaciado vertical */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 75%; /* Botones ocupan todo el ancho disponible */
+  }
+  
+  .guessButtons:hover {
+    background-color: #215a6d; /* Cambia el color al pasar el mouse */
+    transform: scale(1.05); /* Efecto de escala */
+  }
+  
+  .guessButtons:active {
+    transform: scale(0.95); /* Efecto de clic */
+  }
+  .coins {
+    font-size: 1.6rem;
+    display: flex;
+    float: right;
+  }
+
+  
 
 
   

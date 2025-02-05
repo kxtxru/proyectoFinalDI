@@ -5,7 +5,7 @@
   <img [src]="imageUrl" alt="Pokémon" class="pixelated" [style.filter]="'blur(' + blurAmount + 'px)'"/>
   <input [(ngModel)]="guess" placeholder="Escribe el nombre" (keyup.enter)="checkGuess()" />
   <button type="button" class="guessButtons" (click)="checkGuess()">Adivinar 🤔</button>
-  <button type="button" class="guessButtons" (click)="togglePista()">Huecos 🔎 (Free)</button>
+  <button type="button" class="guessButtons" (click)="togglePista()">Huecos 🔎</button>
   <button type="button" class="guessButtons" (click)="addPista()">Pista 💡 (5 💰)</button>
   <button type="button" class="guessButtons" (click)="reduceBlur()" [disabled]="blurAmount === 0 || monedas < 10">
     Reducir Blur 🧿 (10 💰)

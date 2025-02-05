@@ -52,7 +52,7 @@ export class AdivinaComponent implements OnInit {
 
   addPista() {
 
-    if(this.isPistaVisible){
+    if(!this.isPistaVisible){
       this.isPistaVisible = true;
     }
     if (this.numPistas < this.pokeName.length && this.monedas >= 5) {
@@ -125,7 +125,9 @@ export class AdivinaComponent implements OnInit {
           },
         });
         this.monedas += 5;
-        this.togglePista();
+        if(!this.isPistaVisible){
+          this.isPistaVisible = true;
+        }
         this.addPista();
       }
     }

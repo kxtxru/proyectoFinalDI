@@ -8,6 +8,7 @@ import { LoginComponent } from './components/login/login.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'adivina/:nombre', component: AdivinaComponent },
+  { path: 'adivina', component: AdivinaComponent },
   { path: 'favoritos', component: FavoritosComponent },
   { path: 'login', component: LoginComponent },
 

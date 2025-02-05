@@ -1,7 +1,9 @@
 <div class="adivina-container">
-  <h1>¿Quién es ese Pokémon?</h1>
+  <h1>¿Who's that pokemon?</h1>
+  <h1 *ngIf="isPistaVisible">{{letras}}</h1>
   <img [src]="imageUrl" alt="Pokémon" class="pixelated" />
   <input [(ngModel)]="guess" placeholder="Escribe el nombre" (keyup.enter)="checkGuess()" />
   <button (click)="checkGuess()">Adivinar</button>
+  <button (click)="togglePista()">Mostrar/Ocultar Pista</button>
   <p>Intentos restantes: {{ attempts }}</p>
 </div>

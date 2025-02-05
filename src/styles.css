@@ -8,7 +8,7 @@ body { margin: 0;}
 
 /* Estilos globales */
 body {
-  font-family: 'Jersey 10', sans-serif;
+  font-family: 'Jersey 10';
   background: white;
   margin: 0;
   padding: 0;
@@ -33,8 +33,8 @@ body {
 
 /* Título */
 h1 {
-  font-size: 2.5rem;
-  color: #e74c3c; /* Rojo Pokémon */
+  font-size: 3rem;
+  color: #2d2d29; /* Rojo Pokémon */
   margin-bottom: 1.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
 }
@@ -54,8 +54,8 @@ h1 {
 
 /* Input y botón */
 input {
-  font-family: 'Jersey 10', sans-serif;
-  font-size: 1.2rem;
+  font-family: 'Jersey 10';
+  font-size: 1.4rem;
   padding: 0.5rem;
   border: 2px solid #3498db; /* Borde azul */
   border-radius: 8px;
@@ -66,23 +66,24 @@ input {
 }
 
 input:focus {
-  border-color: #e74c3c; /* Cambia el color del borde al enfocar */
+  border-color: #215a6d; /* Cambia el color del borde al enfocar */
 }
 
 button {
-  font-family: 'Jersey 10', sans-serif;
-  font-size: 1.2rem;
+  font-family: 'Jersey 10';
+  font-size: 1.3rem;
   padding: 0.5rem 1rem;
-  background-color: #3498db; /* Fondo azul */
+  background-color: #3ca2a2; /* Fondo azul */
   color: white;
   border: none;
   border-radius: 8px;
+  margin: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #e74c3c; /* Cambia el color al pasar el mouse */
+  background-color: #215a6d; /* Cambia el color al pasar el mouse */
   transform: scale(1.05); /* Efecto de escala */
 }
 
@@ -92,7 +93,7 @@ button:active {
 
 /* Intentos restantes */
 p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #2c3e50;
   margin-top: 1rem;
 }

@@ -12,11 +12,6 @@
     height: 200px;
     filter: blur(400000px); /* Ajusta el nivel de difuminado */
   }
-  
-  input, button {
-    font-family: 'Jersey 10', sans-serif;
-    font-size: 1.2rem;
-    margin: 10px;
-  }
+
 
   

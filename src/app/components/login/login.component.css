@@ -7,7 +7,7 @@
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más fuerte y con mayor difuminado */
     text-align: center;
-    animation: fadeIn 0.5s ease-out; /* Animación de entrada */
+    animation: fadeIn 1.5s ease-out; /* Animación de entrada */
   }
 
   /* Animación para el fadeIn */
@@ -21,11 +21,11 @@
   }
   
   h2 {
-    font-size: 2rem;
+    font-size: 2.8rem;
     margin-bottom: 30px;
     color: #333;
     font-weight: bold;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Jersey10';
   }
   
   .input-group {
@@ -35,16 +35,16 @@
   
   .input-group label {
     display: block;
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-bottom: 5px;
     color: #555;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Jersey10';
   }
   
   .input-group input {
     width: 92%;
     padding: 12px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     border: 1px solid #ddd;
     border-radius: 5px;
     outline: none;
@@ -58,13 +58,13 @@
   .btn-login {
     width: 100%;
     padding: 14px;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: #fff;
     background-color: #007bff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Jersey10';
     transition: background-color 0.3s ease, transform 0.2s ease; /* Transiciones suaves */
   }
   

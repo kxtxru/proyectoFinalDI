@@ -21,20 +21,35 @@ export class AdivinaComponent implements OnInit {
   nombre: string = '';
   racha: number = 1;
   currentDialogRef: MatDialogRef<any> | null = null;
+  letras: string = "";
+  pokeName: string = "";
+  isPistaVisible: boolean = false;
 
   constructor(private pokemonService: PokemonService,private dialog: MatDialog,private route: ActivatedRoute) {}
 
+  togglePista() {
+    this.isPistaVisible = !this.isPistaVisible; // Cambia el estado
+  }
+
   ngOnInit(): void {
+
     this.loadRandomPokemon();
     this.route.paramMap.subscribe(params => {
       this.nombre = params.get('nombre') || 'Invitado';
     });
+  }
+  loadLetras() {
+    for (let i = 0; i < this.pokeName.length; i++) {  
+      this.letras += this.pokeName.toString()[i] === "-" ? "- " : "_ ";  
+  } 
   }
 
   loadRandomPokemon(): void {
     this.pokemonService.getRandomPokemon().subscribe((data: any) => {
       this.pokemon = data;
       this.imageUrl = data.sprites.front_default;
+      this.pokeName = "asdasd";
+      this.loadLetras();
     });
   }
 
@@ -52,6 +67,7 @@ export class AdivinaComponent implements OnInit {
           message: `Es ${this.pokemon.name}, ${this.nombre}, llevas racha de: ${this.racha}`,
         },
       });
+      this.attempts = 3;
       this.racha ++;
       this.loadRandomPokemon();
     } else {

@@ -11,7 +11,7 @@ body {
   background: white;
   margin: 0;
   padding: 0;
-  color: #2c3e50; /* Color de texto principal */
+  color: #2c3e50; 
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -23,9 +23,9 @@ body {
 /* Título */
 h1 {
   font-size: 3rem;
-  color: #2d2d29; /* Rojo Pokémon */
+  color: #2d2d29; 
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombra de texto */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
 }
 
   /* Imagen del Pokémon */
@@ -33,18 +33,18 @@ h1 {
     image-rendering: pixelated;
     width: 200px;
     height: 200px;
-    transition: filter 0.3s ease; /* Transición suave */
+    transition: filter 0.3s ease; 
   }
   
   .pixelated:hover {
-    filter: blur(0); /* Quita el desenfoque al pasar el mouse */
+    filter: blur(0); 
   }
 
 /* Input y botón */
 input {
   font-size: 1.2rem;
   padding: 0.5rem;
-  border: 2px solid #3498db; /* Borde azul */
+  border: 2px solid #3498db; 
   border-radius: 8px;
   width: 80%;
   margin: 10px 0;

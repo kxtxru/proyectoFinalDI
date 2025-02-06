@@ -1,5 +1,8 @@
 <div class="adivina-container">
   <p class="coins">{{monedas}} 💰</p>
+  <button type="button" class="favs" routerLink="/favoritos">❤️</button>
+  <br>
+  <br>
   <h1>¿Who's that pokemon?</h1>
   <h1 *ngIf="isPistaVisible">{{ letras.join(' ') }}</h1>
   <img [src]="imageUrl" alt="Pokémon" class="pixelated" [style.filter]="'blur(' + blurAmount + 'px)'"/>

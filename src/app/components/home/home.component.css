@@ -23,3 +23,15 @@
     font-size: 8rem;
     font-family: 'Jersey 10';
   }
+
+  button {
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  background-color: #3ca2a2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}

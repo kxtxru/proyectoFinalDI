@@ -4,12 +4,12 @@ import { PokemonService } from '../../services/pokemon.service';
 import { CommonModule } from '@angular/common'; 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResultDialogComponent } from '../result-dialog/result-dialog.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-adivina',
   standalone: true, 
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RouterLink],
   templateUrl: './adivina.component.html',
   styleUrls: ['./adivina.component.css'],
 })
@@ -42,6 +42,10 @@ export class AdivinaComponent implements OnInit {
     }
   }
 
+  returnBlur() {
+    this.blurAmount = 5;
+  }
+
   ngOnInit(): void {
 
     this.loadRandomPokemon();
@@ -63,13 +67,26 @@ export class AdivinaComponent implements OnInit {
   }
 
   loadRandomPokemon(): void {
+    this.returnBlur();
     this.pokemonService.getRandomPokemon().subscribe((data: any) => {
       this.pokemon = data;
       this.imageUrl = data.sprites.front_default;
       this.pokeName = this.pokemon.name;
-      this.numPistas = 0; // Reinicia el contador de pistas
-      this.letras = Array(this.pokeName.length).fill('_'); // Inicializa solo al cargar nuevo Pokémon
+      this.numPistas = 0;
+      this.loadLetras();
+      
     });
+  }
+  loadLetras() {
+    this.letras = Array(this.pokeName.length).fill('_');
+
+    for(var i = 0; i < this.pokeName.length; i++){
+      if(this.pokeName.charAt(i).match('-')){
+        this.letras[i] = '-';
+      }else{
+        this.letras[i] = '_';
+      }
+    }
   }
 
   revealRandomLetter() {
@@ -91,7 +108,7 @@ export class AdivinaComponent implements OnInit {
       this.currentDialogRef.close();
     }
     if (this.guess.trim() === '') {
-      return;  // Si el campo está vacío, no hacer nada
+      return;
     }
     if (this.guess.toLowerCase() === this.pokemon.name.toLowerCase()) {
       this.dialog.open(ResultDialogComponent, {
@@ -100,7 +117,7 @@ export class AdivinaComponent implements OnInit {
           message: `Es ${this.pokemon.name}, ${this.nombre}, llevas racha de: ${this.racha}`,
         },
       });
-      this.monedas += 10;
+      this.monedas += 15;
       this.attempts = 3;
       this.racha ++;
 
@@ -116,7 +133,7 @@ export class AdivinaComponent implements OnInit {
         });
         setTimeout(() => {
           window.location.reload();
-        }, 3000); // Recarga la página después de 3 segundos
+        }, 3000);
       } else {
         this.dialog.open(ResultDialogComponent, {
           data: {

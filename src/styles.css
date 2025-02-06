@@ -18,17 +18,7 @@ body {
   align-items: center;
 }
 
-/* Contenedor principal */
-.adivina-container {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
-  padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra */
-  max-width: 500px;
-  width: 100%;
-  margin: 1rem;
-}
+
 
 /* Título */
 h1 {
@@ -66,17 +56,7 @@ input:focus {
   border-color: #215a6d; /* Cambia el color del borde al enfocar */
 }
 
-button {
-  font-size: 1.6rem;
-  padding: 0.5rem 1rem;
-  background-color: #3ca2a2; /* Fondo azul */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  margin: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+
 
 button:hover {
   background-color: #215a6d; /* Cambia el color al pasar el mouse */

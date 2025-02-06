@@ -1,10 +1,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
 
+/* Contenedor principal */
 .adivina-container {
-    text-align: center;
-    font-family: 'Jersey 10';
-  }
+  text-align: center;
+  background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra */
+  max-width: 500px;
+  width: 100%;
+  margin: 1rem;
+}
   h1{
     font-family: 'Jersey 10';
   }
@@ -23,11 +30,11 @@
   
   .guessButtons:hover {
     background-color: #215a6d; /* Cambia el color al pasar el mouse */
-    transform: scale(1.05); /* Efecto de escala */
+    transform: scale(1.05); 
   }
   
   .guessButtons:active {
-    transform: scale(0.95); /* Efecto de clic */
+    transform: scale(0.95);
   }
   .coins {
     font-size: 1.6rem;
@@ -35,7 +42,43 @@
     float: right;
   }
 
+  .favs {
+    font-size: 1.6rem;
+    display: flex;
+    float: left;
+  }
+
+
+  .favs:hover {
+    transform: scale(1.1); 
+  }
   
+  .favs:active {
+    transform: scale(0.90);
+  }
+  
+
+  button.favs {
+    font-size: 1.6rem;
+    padding: 0.5rem 1rem;
+    background-color: #00000000; /* Fondo azul */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 10px 0; /* Espaciado vertical */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+  }
+  
+  button.favs:hover {
+    background-color: #f7bbbb; /* Cambia el color al pasar el mouse */
+    transform: scale(1.05); 
+  }
+  
+  button.favs:active {
+    transform: scale(0.95);
+  }
 
 
   

@@ -1,11 +1,13 @@
+
 <div class="adivina-container">
   <p class="coins">{{monedas}} 💰</p>
-  <button type="button" class="favs" routerLink="/favoritos">❤️</button>
+  <button type="button" class="favs" routerLink="/favoritos">Favoritos</button>
   <br>
   <br>
-  <h1>¿Who's that pokemon?</h1>
+  <h1>¿Who's that pokemon?</h1>   
   <h1 *ngIf="isPistaVisible">{{ letras.join(' ') }}</h1>
   <img [src]="imageUrl" alt="Pokémon" class="pixelated" [style.filter]="'blur(' + blurAmount + 'px)'"/>
+  <button type="button" class="addfavs" (click)="addToFavorites()">❤️</button>
   <input [(ngModel)]="guess" placeholder="Escribe el nombre" (keyup.enter)="checkGuess()" />
   <button type="button" class="guessButtons" (click)="checkGuess()">Adivinar 🤔</button>
   <button type="button" class="guessButtons" (click)="togglePista()">Huecos 🔎</button>

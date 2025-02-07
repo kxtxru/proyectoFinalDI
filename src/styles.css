@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
-html, body { height: 100%; }
-body { margin: 0;}
-
-
+@import url("https://fonts.googleapis.com/css2?family=Jersey+10&display=swap");
+html,
+body {
+  height: 100%;
+}
 
 
 /* Estilos globales */
@@ -11,40 +11,36 @@ body {
   background: white;
   margin: 0;
   padding: 0;
-  color: #2c3e50; 
+  color: #2c3e50;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-
-
-/* Título */
 h1 {
   font-size: 3rem;
-  color: #2d2d29; 
+  color: #2d2d29;
   margin-bottom: 1.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-  /* Imagen del Pokémon */
-  .pixelated {
-    image-rendering: pixelated;
-    width: 200px;
-    height: 200px;
-    transition: filter 0.3s ease; 
-  }
-  
-  .pixelated:hover {
-    filter: blur(0); 
-  }
+.pixelated {
+  image-rendering: pixelated;
+  width: 200px;
+  height: 200px;
+  transition: filter 0.3s ease;
+}
 
-/* Input y botón */
+.pixelated:hover {
+  filter: blur(0);
+}
+
+
 input {
   font-size: 1.2rem;
   padding: 0.5rem;
-  border: 2px solid #3498db; 
+  border: 2px solid #3498db;
   border-radius: 8px;
   width: 80%;
   margin: 10px 0;
@@ -53,18 +49,16 @@ input {
 }
 
 input:focus {
-  border-color: #215a6d; /* Cambia el color del borde al enfocar */
+  border-color: #215a6d; 
 }
 
-
-
 button:hover {
-  background-color: #215a6d; /* Cambia el color al pasar el mouse */
-  transform: scale(1.05); /* Efecto de escala */
+  background-color: #215a6d; 
+  transform: scale(1.05);
 }
 
 button:active {
-  transform: scale(0.95); /* Efecto de clic */
+  transform: scale(0.95); 
 }
 
 p {
@@ -79,9 +73,8 @@ p {
     font-size: 2rem;
   }
 
-
-  input, button {
+  input,
+  button {
     width: 90%;
   }
-
 }

@@ -42,41 +42,49 @@
     float: right;
   }
 
-  .favs {
-    font-size: 1.6rem;
-    display: flex;
-    float: left;
-  }
-
-
-  .favs:hover {
+  .addfavs:hover {
     transform: scale(1.1); 
   }
   
-  .favs:active {
+  .addfavs:active {
     transform: scale(0.90);
   }
   
 
-  button.favs {
-    font-size: 1.6rem;
+  button.addfavs {
+    display: inline;
+    position: fixed;
+    font-size: 2rem;
     padding: 0.5rem 1rem;
-    background-color: #00000000; /* Fondo azul */
+    background-color: #00000000; 
     color: white;
     border: none;
     border-radius: 8px;
-    margin: 10px 0; /* Espaciado vertical */
+    margin: -20px 40px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    float: right;
+  }
 
+  .favs {
+    font-size: 1.4rem;
+    padding: 0.5rem 1rem;
+    background-color: #f77272; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin: 10px 20px; 
+    cursor: pointer;
+    float: left;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
-  button.favs:hover {
-    background-color: #f7bbbb; /* Cambia el color al pasar el mouse */
+  .favs:hover {
+    background-color: #f34949; 
     transform: scale(1.05); 
   }
   
-  button.favs:active {
+  .favs:active {
     transform: scale(0.95);
   }
 

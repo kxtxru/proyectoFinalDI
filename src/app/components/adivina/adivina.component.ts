@@ -16,29 +16,30 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class AdivinaComponent implements OnInit {
 
 
-  pokemon: any;
+  private pokemon: any;
   imageUrl: string = '';
   attempts = 3;
   guess = '';
-  nombre: string = '';
-  racha: number = 1;
-  currentDialogRef: MatDialogRef<any> | null = null;
+  private nombre: string = '';
+  private racha: number = 1;
+  private currentDialogRef: MatDialogRef<any> | null = null;
   letras!: any[];
-  pokeName: string = "";
+  private pokeName: string = "";
   isPistaVisible: boolean = false;
-  numPistas = 0;
+  private numPistas = 0;
   monedas: number = 0;
   blurAmount: number = 4;
+  adivinado: boolean = false;
 
   constructor(private pokemonService: PokemonService,private dialog: MatDialog,private route: ActivatedRoute) {}
 
   togglePista() {
-    this.isPistaVisible = !this.isPistaVisible; // Cambia el estado
+    this.isPistaVisible = !this.isPistaVisible; 
   }
   reduceBlur() {
     if (this.monedas >= 10 && this.blurAmount > 0) {
       this.monedas -= 10;
-      this.blurAmount = Math.max(0, this.blurAmount - 2); // Reduce el blur en 1px, mínimo 0
+      this.blurAmount = Math.max(0, this.blurAmount - 2);
     }
   }
 
@@ -62,7 +63,7 @@ export class AdivinaComponent implements OnInit {
     if (this.numPistas < this.pokeName.length && this.monedas >= 5) {
       this.numPistas++;
       this.monedas -= 5;
-      this.revealRandomLetter(); // Solo revela una nueva letra sin reiniciar
+      this.revealRandomLetter();
     }
   }
 
@@ -72,10 +73,9 @@ export class AdivinaComponent implements OnInit {
       this.pokemon = data;
       this.imageUrl = data.sprites.front_default;
       this.pokeName = this.pokemon.name;
-      this.numPistas = 0;
-      this.loadLetras();
-      
     });
+    this.numPistas = 0;
+    this.loadLetras();
   }
   loadLetras() {
     this.letras = Array(this.pokeName.length).fill('_');
@@ -117,11 +117,13 @@ export class AdivinaComponent implements OnInit {
           message: `Es ${this.pokemon.name}, ${this.nombre}, llevas racha de: ${this.racha}`,
         },
       });
+      this.adivinado = true;
       this.monedas += 15;
       this.attempts = 3;
       this.racha ++;
 
       this.loadRandomPokemon();
+      this.adivinado = false;
     } else {
       this.attempts--;
       if (this.attempts === 0) {
@@ -149,5 +151,9 @@ export class AdivinaComponent implements OnInit {
       }
     }
     this.guess = '';
+  }
+
+  addToFavorites(): void {
+    this.pokemonService.addToFavorites(this.pokemon, this.adivinado);
   }
 }

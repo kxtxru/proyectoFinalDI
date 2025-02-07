@@ -1,1 +1,17 @@
-<p>favorito!</p>
+<div *ngIf="favoritos.length > 0; else noFavorites">
+    <h2>Pokémon Favoritos</h2>
+    <div *ngFor="let pokemon of favoritos">
+        <span *ngIf="!pokemon.adivinado">
+            {{ pokemon.name.split('').join(' ') }}
+          </span>
+          
+          <span *ngIf="pokemon.adivinado">
+            {{ pokemon.name }}
+          </span>
+      <img [src]="pokemon.sprites.front_default" alt="Pokemon Image" />
+    </div>
+  </div>
+  
+  <ng-template #noFavorites>
+    <p>No tienes Pokémon favoritos aún.</p>
+  </ng-template>

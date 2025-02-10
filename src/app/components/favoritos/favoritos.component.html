@@ -1,17 +1,18 @@
-<div *ngIf="favoritos.length > 0; else noFavorites">
-    <h2>Pokémon Favoritos</h2>
-    <div *ngFor="let pokemon of favoritos">
-        <span *ngIf="!pokemon.adivinado">
-            {{ pokemon.name.split('').join(' ') }}
-          </span>
-          
-          <span *ngIf="pokemon.adivinado">
-            {{ pokemon.name }}
-          </span>
-      <img [src]="pokemon.sprites.front_default" alt="Pokemon Image" />
-    </div>
+<div *ngIf="favoritos.length > 0; else noFavorites" class="favorito-container">
+  <h3>Pokémon Favoritos</h3>
+  <ul>
+    <li *ngFor="let pokemon of favoritos" class="pokemon-item">
+      <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
+      <p>{{ pokemon.name }}</p>
+      <button (click)="removePokemonFromFavorites(pokemon)">x</button>
+    </li>
+  </ul>
+  <div class="navigation-buttons">
   </div>
-  
-  <ng-template #noFavorites>
-    <p>No tienes Pokémon favoritos aún.</p>
-  </ng-template>
+</div>
+
+<ng-template #noFavorites>
+  <p class="no-pokemon">No tienes Pokémon favoritos aún.</p>
+  <div class="navigation-buttons">
+  </div>
+</ng-template>

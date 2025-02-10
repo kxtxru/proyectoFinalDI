@@ -1,0 +1,41 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    color: #333;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    z-index: 1000;
+  }
+  
+  .navbar-list {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navbar-list li {
+    margin: 0 20px;
+  }
+  
+  .navbar-link {
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s ease, transform 0.2s ease; 
+  }
+  
+  .navbar-link:hover {
+    color: #3ca2a2; 
+    transform: scale(1.05); 
+  }
+  
+  .navbar-link:active {
+    color: #3ca2a2;
+    transform: scale(0.95);
+  }
+  

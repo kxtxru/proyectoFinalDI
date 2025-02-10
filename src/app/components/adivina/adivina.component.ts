@@ -4,12 +4,13 @@ import { PokemonService } from '../../services/pokemon.service';
 import { CommonModule } from '@angular/common'; 
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ResultDialogComponent } from '../result-dialog/result-dialog.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { pokemonstate } from '../../services/pokemonstate.service';
 
 @Component({
   selector: 'app-adivina',
   standalone: true, 
-  imports: [FormsModule, CommonModule, RouterLink],
+  imports: [FormsModule, CommonModule],
   templateUrl: './adivina.component.html',
   styleUrls: ['./adivina.component.css'],
 })
@@ -24,14 +25,14 @@ export class AdivinaComponent implements OnInit {
   private racha: number = 1;
   private currentDialogRef: MatDialogRef<any> | null = null;
   letras!: any[];
-  private pokeName: string = "";
+  pokeName: string = "";
   isPistaVisible: boolean = false;
   private numPistas = 0;
   monedas: number = 0;
   blurAmount: number = 4;
   adivinado: boolean = false;
 
-  constructor(private pokemonService: PokemonService,private dialog: MatDialog,private route: ActivatedRoute) {}
+  constructor(private pokemonService: PokemonService,private dialog: MatDialog,private route: ActivatedRoute, private pokemonstate: pokemonstate) {}
 
   togglePista() {
     this.isPistaVisible = !this.isPistaVisible; 
@@ -39,6 +40,7 @@ export class AdivinaComponent implements OnInit {
   reduceBlur() {
     if (this.monedas >= 10 && this.blurAmount > 0) {
       this.monedas -= 10;
+      this.updateMonedas();
       this.blurAmount = Math.max(0, this.blurAmount - 2);
     }
   }
@@ -48,11 +50,23 @@ export class AdivinaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Verifica si ya hay un Pokémon cargado en el estado
+    const savedPokemon = this.pokemonstate.getCurrentPokemon();
+    if (savedPokemon) {
+      this.pokemon = savedPokemon;
+      this.imageUrl = savedPokemon.sprites.front_default;
+      this.pokeName = savedPokemon.name;
+      this.loadLetras();
+    } else {
+      this.loadRandomPokemon(); // Si no hay Pokémon guardado, carga uno nuevo
+    }
 
-    this.loadRandomPokemon();
     this.route.paramMap.subscribe(params => {
       this.nombre = params.get('nombre') || 'Invitado';
     });
+
+    const savedMonedas = localStorage.getItem('monedas');
+    this.monedas = savedMonedas ? parseInt(savedMonedas, 10) : 0;
   }
 
   addPista() {
@@ -63,6 +77,7 @@ export class AdivinaComponent implements OnInit {
     if (this.numPistas < this.pokeName.length && this.monedas >= 5) {
       this.numPistas++;
       this.monedas -= 5;
+      this.updateMonedas();
       this.revealRandomLetter();
     }
   }
@@ -73,9 +88,10 @@ export class AdivinaComponent implements OnInit {
       this.pokemon = data;
       this.imageUrl = data.sprites.front_default;
       this.pokeName = this.pokemon.name;
+      this.pokemonstate.setCurrentPokemon(this.pokemon);
+      this.loadLetras();
     });
     this.numPistas = 0;
-    this.loadLetras();
   }
   loadLetras() {
     this.letras = Array(this.pokeName.length).fill('_');
@@ -107,9 +123,11 @@ export class AdivinaComponent implements OnInit {
     if (this.currentDialogRef) {
       this.currentDialogRef.close();
     }
+  
     if (this.guess.trim() === '') {
       return;
     }
+  
     if (this.guess.toLowerCase() === this.pokemon.name.toLowerCase()) {
       this.dialog.open(ResultDialogComponent, {
         data: {
@@ -117,26 +135,32 @@ export class AdivinaComponent implements OnInit {
           message: `Es ${this.pokemon.name}, ${this.nombre}, llevas racha de: ${this.racha}`,
         },
       });
+      this.addToHistorial();
       this.adivinado = true;
-      this.monedas += 15;
-      this.attempts = 3;
-      this.racha ++;
-
-      this.loadRandomPokemon();
+      this.monedas += 5;
+      this.updateMonedas();
+      this.attempts = 3; // Resetea los intentos al valor inicial
+      this.racha++;
+  
+      this.loadRandomPokemon(); // Carga un nuevo Pokémon
       this.adivinado = false;
     } else {
-      this.attempts--;
+      this.attempts--; // Decrementa los intentos
+  
       if (this.attempts === 0) {
+        // Si no quedan intentos
         this.dialog.open(ResultDialogComponent, {
           data: {
             title: '¡Perdiste!',
             message: `Era ${this.pokemon.name}`,
           },
         });
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+  
+        // Resetear el estado del juego para el siguiente intento
+        this.resetGameState(); // Se resetean los valores necesarios sin recargar la página
+  
       } else {
+        // Si aún quedan intentos
         this.dialog.open(ResultDialogComponent, {
           data: {
             title: 'Inténtalo de nuevo!',
@@ -144,16 +168,40 @@ export class AdivinaComponent implements OnInit {
           },
         });
         this.monedas += 5;
-        if(!this.isPistaVisible){
+        if (!this.isPistaVisible) {
           this.isPistaVisible = true;
         }
         this.addPista();
       }
     }
-    this.guess = '';
+  
+    this.guess = ''; // Limpia la suposición para el siguiente intento
+  }
+
+  resetGameState(): void {
+    this.attempts = 3;
+    this.numPistas = 0;
+    this.isPistaVisible = false;
+    this.guess = ''; 
+    this.loadRandomPokemon(); 
+    this.loadLetras();
+    this.racha = 1;
+    if(this.monedas > 20){
+      this.monedas -= 20;
+    } else {
+      this.monedas = 0;
+    }
   }
 
   addToFavorites(): void {
-    this.pokemonService.addToFavorites(this.pokemon, this.adivinado);
+    this.pokemonstate.addFavorite(this.pokemon); 
   }
+
+  addToHistorial(): void {
+    this.pokemonstate.addToHistorial(this.pokemon);
+  }
+  updateMonedas(): void {
+    localStorage.setItem('monedas', this.monedas.toString());
+  }
+  
 }

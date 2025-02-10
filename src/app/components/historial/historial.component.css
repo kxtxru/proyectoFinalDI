@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
 
-/* Contenedor principal de favoritos */
-.favorito-container {
+/* Contenedor principal del historial */
+.historial-container {
   text-align: center;
   background: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente */
   padding: 2rem;
@@ -10,28 +10,30 @@
   max-width: 600px;
   width: 100%;
   margin: 1rem auto;
+  margin-top: 100%;
 }
 
-/* Título de favoritos */
-.favorito-container h3 {
+/* Título del historial */
+.historial-container h3 {
   font-family: 'Jersey 10', sans-serif;
   font-size: 2rem;
   color: #3ca2a2;
   margin-bottom: 1.5rem;
+
 }
 
-/* Lista de Pokémon Favoritos */
-.favorito-container ul {
+/* Lista de Pokémon */
+.historial-container ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 /* Elementos de la lista */
-.favorito-container .pokemon-item {
+.historial-container li {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: rgba(255, 255, 255, 0.8);
   padding: 1rem;
   margin: 1rem 0;
@@ -40,8 +42,13 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.historial-container li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
 /* Imagen del Pokémon */
-.favorito-container img {
+.historial-container img {
   width: 80px;
   height: 80px;
   border-radius: 10px;
@@ -49,7 +56,7 @@
 }
 
 /* Nombre del Pokémon */
-.favorito-container p {
+.historial-container p {
   font-family: 'Jersey 10', sans-serif;
   font-size: 1.5rem;
   color: #215a6d;
@@ -58,26 +65,28 @@
   text-align: left;
 }
 
-.favorito-container button {
-    font-size: 1rem;
-    padding: 0.3rem 0.5rem;
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .favorito-container button:hover {
-    background-color: #d32f2f; /* Rojo oscuro al pasar el mouse */
-    transform: scale(1.05);
-  }
-  
-  .favorito-container button:active {
-    transform: scale(0.95);
-  }
-/* Mensaje cuando no hay Pokémon favoritos */
+/* Botón "Añadir a Favoritos" */
+.historial-container button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #3ca2a2; /* Fondo azul verdoso */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.historial-container button:hover {
+  background-color: #215a6d; /* Cambia el color al pasar el mouse */
+  transform: scale(1.05);
+}
+
+.historial-container button:active {
+  transform: scale(0.95);
+}
+
+/* Mensaje cuando no hay Pokémon adivinados */
 .no-pokemon {
   font-family: 'Jersey 10', sans-serif;
   font-size: 1.5rem;
@@ -112,20 +121,3 @@
 .navigation-buttons button:active {
   transform: scale(0.95);
 }
-
-.favorito-container li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 1rem;
-    margin: 1rem 0;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .favorito-container li:hover {
-    transform: scale(1.02);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  }

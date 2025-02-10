@@ -1,0 +1,19 @@
+<div *ngIf="historial.length > 0; else noPokemon" class="historial-container">
+    <h3>Historial de Pokémon Adivinados</h3>
+    <ul>
+      <li *ngFor="let pokemon of historial">
+        <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}" />
+        <p>{{ pokemon.name }}</p>
+        <button (click)="addPokemonToFavorites(pokemon)">Añadir a Favoritos</button>
+      </li>
+    </ul>
+    <div class="navigation-buttons">
+    </div>
+  </div>
+  
+  <ng-template #noPokemon>
+    <p class="no-pokemon">No has adivinado ningún Pokémon aún.</p>
+    <div class="navigation-buttons">
+    </div>
+  </ng-template>
+  

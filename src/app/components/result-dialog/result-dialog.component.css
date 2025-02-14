@@ -7,7 +7,6 @@ html, body {
   font-family: 'Jersey10';
 }
 
-/* Contenedor de fondo que ocupa toda la pantalla */
 .fullscreen {
   width: 100%;
   height: 100%;
@@ -17,7 +16,6 @@ html, body {
   align-items: center;
 }
 
-/* Estilos para el contenedor del diálogo */
 .dialog-container {
   background-color: #ffffff;
   padding: 40px;
@@ -29,14 +27,12 @@ html, body {
   animation: fadeIn 0.5s ease;
 }
 
-/* Estilo para el título del diálogo */
 .dialog-container h2 {
   margin: 0 0 20px;
   font-size: 3rem;
   color: #333333;
 }
 
-/* Estilo para el párrafo del mensaje */
 .dialog-container p {
   margin: 0 0 30px;
   font-size: 1.6rem;
@@ -44,7 +40,6 @@ html, body {
   line-height: 1.6;
 }
 
-/* Estilos para el botón */
 .dialog-container button {
   background-color: #3ca2a2;
   color: #ffffff;
@@ -56,12 +51,10 @@ html, body {
   transition: background-color 0.3s ease;
 }
 
-/* Efecto hover para el botón */
 .dialog-container button:hover {
   background-color: #215a6d;
 }
 
-/* Animación de aparición */
 @keyframes fadeIn {
   from {
     opacity: 0;

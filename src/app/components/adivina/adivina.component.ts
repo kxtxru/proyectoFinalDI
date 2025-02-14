@@ -50,7 +50,6 @@ export class AdivinaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Verifica si ya hay un Pokémon cargado en el estado
     const savedPokemon = this.pokemonstate.getCurrentPokemon();
     if (savedPokemon) {
       this.pokemon = savedPokemon;
@@ -139,13 +138,13 @@ export class AdivinaComponent implements OnInit {
       this.adivinado = true;
       this.monedas += 5;
       this.updateMonedas();
-      this.attempts = 3; // Resetea los intentos al valor inicial
+      this.attempts = 3; 
       this.racha++;
   
-      this.loadRandomPokemon(); // Carga un nuevo Pokémon
+      this.loadRandomPokemon();
       this.adivinado = false;
     } else {
-      this.attempts--; // Decrementa los intentos
+      this.attempts--; 
   
       if (this.attempts === 0) {
         // Si no quedan intentos
@@ -156,7 +155,6 @@ export class AdivinaComponent implements OnInit {
           },
         });
   
-        // Resetear el estado del juego para el siguiente intento
         this.resetGameState(); // Se resetean los valores necesarios sin recargar la página
   
       } else {
@@ -175,7 +173,7 @@ export class AdivinaComponent implements OnInit {
       }
     }
   
-    this.guess = ''; // Limpia la suposición para el siguiente intento
+    this.guess = '';
   }
 
   resetGameState(): void {

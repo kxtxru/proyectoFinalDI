@@ -13,7 +13,6 @@ export class pokemonstate {
   historial$ = this.historialSubject.asObservable();
 
   constructor() {
-    // Verificar si estamos en el navegador antes de acceder a localStorage
     if (typeof window !== 'undefined' && window.localStorage) {
       this.loadFromLocalStorage();
     }
@@ -35,7 +34,7 @@ export class pokemonstate {
     const currentFavorites = this.favoritosSubject.getValue();
     if (!currentFavorites.some(fav => fav.name === pokemon.name)) {
       this.favoritosSubject.next([...currentFavorites, pokemon]);
-      this.saveToLocalStorage();  // Guardar favoritos en localStorage
+      this.saveToLocalStorage(); 
     }
   }
 
@@ -44,7 +43,7 @@ export class pokemonstate {
       (fav) => fav.name !== pokemon.name
     );
     this.favoritosSubject.next(favoritos);
-    this.saveToLocalStorage();  // Guardar cambios en localStorage
+    this.saveToLocalStorage(); 
   }
 
   getFavorites(): any[] {
@@ -55,7 +54,7 @@ export class pokemonstate {
     const currentHistorial = this.historialSubject.getValue();
     if (!currentHistorial.some(p => p.name === pokemon.name)) {
       this.historialSubject.next([...currentHistorial, pokemon]);
-      this.saveToLocalStorage();  // Guardar historial en localStorage
+      this.saveToLocalStorage();  
     }
   }
 
@@ -63,7 +62,7 @@ export class pokemonstate {
     return this.historialSubject.getValue();
   }
 
-  // Función para guardar favoritos e historial en localStorage
+
   private saveToLocalStorage(): void {
     if (typeof window !== 'undefined' && window.localStorage) {
       const favoritos = this.favoritosSubject.getValue();
@@ -73,7 +72,6 @@ export class pokemonstate {
     }
   }
 
-  // Función para cargar favoritos e historial desde localStorage
   private loadFromLocalStorage(): void {
     if (typeof window !== 'undefined' && window.localStorage) {
       const favoritos = JSON.parse(localStorage.getItem('favoritos') || '[]');
